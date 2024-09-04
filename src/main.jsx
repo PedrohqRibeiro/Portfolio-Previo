@@ -13,7 +13,6 @@ import SobreMim from "./components/SobreMim.jsx"
 import About from "./components/About.jsx"
 import Projects from './components/Projects.jsx'
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
      <GlobalStyle/>

@@ -12,7 +12,7 @@ const testimonials = [
   {
     photo: cliente1,
     name: 'Pedro Henrique Ribeiro',
-    text: 'To sdds Momo!',
+    text: 'Pedro é um amigo apaixonado por tecnologia!',
   },
   {
     photo: Logo2,
