@@ -1,0 +1,84 @@
+import React from 'react';
+import styled from 'styled-components'; 
+import { FaReact, FaNodeJs, FaJs } from 'react-icons/fa';
+import { SiTailwindcss, SiNextdotjs, SiStyledcomponents } from 'react-icons/si';
+
+
+const SkillsContainer = styled.div`
+  padding: 40px;
+  background-color: #1e1e1e;
+`;
+
+const Title = styled.h2`
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 50px;
+  color: #61dafb;
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: #61dafb;
+    margin: 20px auto 0;
+  }
+`;
+
+const SkillsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+`;
+
+const SkillCard = styled.div`
+  background: #282c34;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+  }
+`;
+
+const SkillIcon = styled.div`
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: ${(props) => props.color || '#fff'};
+`;
+
+const SkillName = styled.h3`
+  font-size: 1.2rem;
+  margin-top: 10px;
+`;
+
+const Skills = () => {
+  const skills = [
+    { name: 'React.js', icon: <FaReact />, color: '#61dafb' },
+    { name: 'Node.js', icon: <FaNodeJs />, color: '#3c873a' },
+    { name: 'JavaScript', icon: <FaJs />, color: '#f7df1e' },
+    { name: 'Tailwind CSS', icon: <SiTailwindcss />, color: '#38b2ac' },
+    { name: 'Next.js', icon: <SiNextdotjs />, color: '#000' },
+    { name: 'styled-components', icon: <SiStyledcomponents />, color: '#db7093' }
+  ];
+
+  return (
+    <SkillsContainer>
+      <Title>Minhas Skills</Title>
+      <SkillsGrid>
+        {skills.map((skill) => (
+          <SkillCard key={skill.name}>
+            <SkillIcon color={skill.color}>{skill.icon}</SkillIcon>
+            <SkillName>{skill.name}</SkillName>
+          </SkillCard>
+        ))}
+      </SkillsGrid>
+    </SkillsContainer>
+  );
+};
+
+export default Skills;
