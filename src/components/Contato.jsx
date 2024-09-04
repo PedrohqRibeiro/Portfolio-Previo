@@ -54,7 +54,7 @@ const IconButton = styled.a`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: #fff;
+  background-color:#DCDCDC	;
   color: ${({ color }) => color};
   font-size: 1.5rem;
   transition: transform 0.2s, box-shadow 0.2s;
