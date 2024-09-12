@@ -148,8 +148,8 @@ const TestimonialsSection = () => {
   }, []);
 
   return (
-    <Section>
-      <Title>Testemunhos dos Clientes</Title>
+    <Section id="feedbacks">
+      <Title>Feedbacks</Title>
       {isMobile ? (
         <SliderContainer {...settings}>
           {testimonials.map((testimonial, index) => (

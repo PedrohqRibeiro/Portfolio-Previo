@@ -33,6 +33,11 @@ const Title = styled.h2`
     background: #61dafb;
     margin: 15px auto 0; /* Ajuste a margem para diminuir o espaço abaixo da linha */
   }
+  @media (max-width: 768px) {
+    font-size: 1.5em;
+  }
+
+  
 `;
 
 const ProjectsGrid = styled.div`
@@ -155,7 +160,7 @@ const Projects = () => {
 
   return (
     <ProjectsContainer>
-      <Title>Meus Projetos</Title>
+      <Title id="projetos">Meus Projetos</Title>
       <ProjectsGrid>
         {projectList.map((project, index) => (
           <ProjectCard key={index}>

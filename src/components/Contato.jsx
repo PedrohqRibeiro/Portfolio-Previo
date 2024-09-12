@@ -35,6 +35,10 @@ const Title = styled.h2`
     background: #61dafb;
     margin: 10px auto 0; /* Margem abaixo do título reduzida */
   }
+  @media (max-width: 768px) {
+    font-size: 1.5em;
+  }
+
 `;
 
 // Contêiner para os ícones de contato
@@ -72,7 +76,7 @@ const IconButton = styled.a`
 
 const Contact = () => {
   return (
-    <ContactContainer>
+    <ContactContainer id="contato">
       <Title>Entre em Contato</Title>
       <ContactOptions>
         <IconButton href="https://www.instagram.com/pedrohqribeiro/" target="_blank" color="#E4405F" aria-label="Instagram">

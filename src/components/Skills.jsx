@@ -24,6 +24,9 @@ const Title = styled.h2`
     background: #61dafb;
     margin: 20px auto 0;
   }
+  @media (max-width: 768px) {
+    font-size: 1.5em;
+  }
 `;
 
 const SkillsGrid = styled.div`
@@ -67,7 +70,7 @@ const Skills = () => {
   ];
 
   return (
-    <SkillsContainer>
+    <SkillsContainer id="skills">
       <Title>Minhas Skills</Title>
       <SkillsGrid>
         {skills.map((skill) => (

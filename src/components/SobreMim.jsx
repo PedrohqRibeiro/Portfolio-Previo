@@ -2,11 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import minhaImagem from "../assets/cliente1.jpg";
+import curriculoPDF from "../assets/curriculo1.pdf"; // Verifique o caminho do PDF
 import Footer from './Fotter';
 import TestimonialsSection from './TestimonialsSection';
 import Skills from './Skills';
 import Projects from './Projects';
 import Contato from "./Contato"
+import Header from './Header';
 import WhatsAppIcon from './WhatsAppIcon';
 
 // Animação para as letras aparecerem uma a uma
@@ -89,6 +91,10 @@ font-size: 2rem;
     background: #61dafb;
     margin: 20px auto 0;
   }
+  @media (max-width: 768px) {
+    font-size: 1.5em;
+    margin-top:40px;
+  }
 `;
 
 const Description = styled.p`
@@ -113,6 +119,26 @@ const TypingText = styled.p`
   border-right: 3px solid rgba(255, 255, 255, 0.75); /* Cria o cursor */
   width: 0;
   animation: ${typing} 4s steps(30, end) infinite, ${blink} 0.5s step-end infinite alternate; /* Animação infinita */
+`;
+const DownloadButton = styled.a`
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #61dafb;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #21a1f1;
+  }
+  @media (max-width: 768px) {
+    margin-top:40px;
+  }
 `;
 
 const About = () => {
@@ -144,17 +170,21 @@ const About = () => {
 
   return (
     <>
-      <AboutContainer>
+      <AboutContainer >
+        <Header/>
         <ImageWrapper>
-          <Image src={minhaImagem} alt="Pedro Henrique Ribeiro" />
+          <Image src={minhaImagem} alt="Pedro Henrique Ribeiro"  />
           <NameTitle>Pedro Henrique Ribeiro</NameTitle>
           <TypingText>{text}</TypingText>
+          <DownloadButton href={curriculoPDF} download="curriculo-pedro-ribeiro.pdf">
+            Download Currículo
+          </DownloadButton>
         </ImageWrapper>
-        <TextWrapper>
-          <Title>SobreMim</Title>
+        <TextWrapper >
+          <Title id="sobre" >SobreMim</Title>
           <Description>
             Olá, meu nome é Pedro Henrique Ribeiro. Sou um desenvolvedor web apaixonado por criar experiências digitais modernas e envolventes. Tenho experiência com React, Node.js, JavaScript, Next.js, Tailwind CSS e Styled Components. Meu objetivo é desenvolver soluções que não apenas funcionem bem, mas que também ofereçam uma experiência de usuário incrível. Estou sempre buscando aprender novas tecnologias e melhorar minhas habilidades como <span>programador fullstack</span>.
-          </Description>
+          </Description  >
         </TextWrapper>
       </AboutContainer>
       <Skills />

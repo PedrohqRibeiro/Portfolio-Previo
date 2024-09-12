@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.header`
-  background-color: #282c34;
-  color: white;
+   background-color: #1e1e1e;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,6 +17,7 @@ const HeaderContainer = styled.header`
 const Logo = styled.div`
   font-size: 24px;
   font-weight: bold;
+  color: #61dafb; /* Texto azul */
 `;
 
 const Nav = styled.nav`
@@ -33,11 +34,11 @@ const NavList = styled.ul`
 
 const NavItem = styled.li`
   a {
-    color: white;
+    color: #61dafb; /* Texto azul */
     text-decoration: none;
     font-size: 18px;
     &:hover {
-      color: #61dafb;
+      color: #fff; /* Hover para branco */
     }
   }
 `;
@@ -46,7 +47,7 @@ const MobileMenuButton = styled.button`
   display: none;
   background: none;
   border: none;
-  color: white;
+  color: #61dafb;
   font-size: 24px;
   cursor: pointer;
 
@@ -57,7 +58,7 @@ const MobileMenuButton = styled.button`
 
 const MobileNav = styled.nav`
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
-  background-color: #282c34;
+  background-color: #1e1e1e;
   position: absolute;
   top: 60px;
   left: 0;
@@ -74,38 +75,50 @@ const MobileNavList = styled.ul`
 
 const MobileNavItem = styled.li`
   a {
-    color: white;
+    color: #61dafb; /* Texto azul */
     text-decoration: none;
     font-size: 18px;
     &:hover {
-      color: #61dafb;
+      color: #fff; /* Hover para branco */
     }
   }
 `;
 
-const Header = () => {
+const Header = ({ onLinkClick }) => {
   const [menuOpen, setMenuOpen] = React.useState(false);
+
+  const handleMenuClick = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleLinkClick = () => {
+    setMenuOpen(false); // Fecha o menu após o clique
+    if (onLinkClick) onLinkClick(); // Aciona o callback se for passado
+  };
 
   return (
     <HeaderContainer>
-      <Logo>Personal Trainer</Logo>
+      <Logo>Portfólio Web </Logo>
       <Nav>
         <NavList>
-          <NavItem><a href="#home">Home</a></NavItem>
-          <NavItem><a href="#sobre-mim">Sobre Mim</a></NavItem>
-          <NavItem><a href="#blog">Blog</a></NavItem>
-          <NavItem><a href="#contato">Contato</a></NavItem>
+          <NavItem><a href="#sobre" onClick={handleLinkClick}>Sobre</a></NavItem>
+          <NavItem><a href="#skills" onClick={handleLinkClick}>Skills</a></NavItem>
+          <NavItem><a href="#projetos" onClick={handleLinkClick}>Projetos</a></NavItem>
+          <NavItem><a href="#feedbacks" onClick={handleLinkClick}>Feedbacks</a></NavItem>
+          <NavItem><a href="#contato" onClick={handleLinkClick}>Contato</a></NavItem>
+         
         </NavList>
       </Nav>
-      <MobileMenuButton onClick={() => setMenuOpen(!menuOpen)}>
+      <MobileMenuButton onClick={handleMenuClick}>
         ☰
       </MobileMenuButton>
       <MobileNav isOpen={menuOpen}>
         <MobileNavList>
-          <MobileNavItem><a href="#home">Home</a></MobileNavItem>
-          <MobileNavItem><a href="#sobre-mim">Sobre Mim</a></MobileNavItem>
-          <MobileNavItem><a href="#blog">Blog</a></MobileNavItem>
-          <MobileNavItem><a href="#contato">Contato</a></MobileNavItem>
+          <MobileNavItem><a href="#sobre" onClick={handleLinkClick}>Sobre</a></MobileNavItem>
+          <MobileNavItem><a href="#skills" onClick={handleLinkClick}>Skills</a></MobileNavItem>
+          <MobileNavItem><a href="#projetos" onClick={handleLinkClick}>Projetos</a></MobileNavItem>
+          <MobileNavItem><a href="#feedbacks" onClick={handleLinkClick}>Feedbacks</a></MobileNavItem>
+          <MobileNavItem><a href="#contato" onClick={handleLinkClick}>Contato</a></MobileNavItem>
         </MobileNavList>
       </MobileNav>
     </HeaderContainer>
