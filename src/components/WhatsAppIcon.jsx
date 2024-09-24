@@ -67,7 +67,7 @@ const Tooltip = styled.span`
 const WhatsAppIcon = () => {
   return (
     <WhatsAppButton
-      href="https://wa.me/SEU_NUMERO_DE_TELEFONE"
+      href="https://wa.me/48998431796"
       target="_blank"
       rel="noopener noreferrer"
     >

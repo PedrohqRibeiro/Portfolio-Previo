@@ -1,29 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaReact, FaNodeJs, FaJs, FaCss3Alt } from 'react-icons/fa';
-import { SiTailwindcss, SiNextdotjs, SiMongodb, SiGraphql, SiStyledcomponents } from 'react-icons/si';
+import { SiTailwindcss, SiNextdotjs, SiMongodb, SiGraphql, SiStyledcomponents, SiReact, SiNodedotjs, SiExpress, SiHtml5, SiCss3 } from 'react-icons/si';
 import projectImage1 from '../assets/cliente1.jpg';
 import projectImage2 from '../assets/cliente2.jpg';
 import projectImage3 from '../assets/cliente1.jpg';
 import projectImage4 from '../assets/cliente1.jpg';
 import Linktree from "../assets/linktree.png"
+import Screen from "../assets/screenHamb.png"
+import Converter from "../assets/conversor.png"
 
 const ProjectsContainer = styled.div`
   padding: 40px 20px; /* Reduzido o padding para diminuir a distância vertical */
   background-color: #1e1e1e;
   color: #fff;
-  min-height: 70vh; /* Ajuste a altura mínima para um valor menor */
+  min-height: 60vh; 
   display: flex;
   flex-direction: column;
   align-items: center;
+ 
+
+  
 `;
 
 const Title = styled.h2`
   font-size: 2rem;
   text-align: center;
-  margin-bottom: 30px; /* Reduzido a margem inferior para diminuir o espaço */
+  margin-bottom: 30px; 
   color: #61dafb;
   position: relative;
+  scroll-margin-top: 80px; 
 
   &::after {
     content: '';
@@ -31,7 +37,7 @@ const Title = styled.h2`
     width: 80px;
     height: 3px;
     background: #61dafb;
-    margin: 15px auto 0; /* Ajuste a margem para diminuir o espaço abaixo da linha */
+    margin: 15px auto 0; 
   }
   @media (max-width: 768px) {
     font-size: 1.5em;
@@ -47,6 +53,7 @@ const ProjectsGrid = styled.div`
   align-items: stretch;
   width: 100%;
   margin-top: 40px;
+  padding-top: 20px;
 `;
 
 const ProjectCard = styled.div`
@@ -132,7 +139,7 @@ const Projects = () => {
       title: 'Linktree Personalize',
       description: 'Linktree feito em React e styled-components.',
       technologies: [<FaReact className="react-icon" />, <SiStyledcomponents className="tailwind-icon" />],
-      link: 'https://github.com/seu-usuario/portfolio',
+      link: 'https://linktree-personalize.vercel.app/',
       image: Linktree,
     },
     {
@@ -143,18 +150,25 @@ const Projects = () => {
       image: projectImage2,
     },
     {
-      title: 'E-commerce',
-      description: 'Loja online feita com Next.js e MongoDB.',
-      technologies: [<SiNextdotjs className="nextjs-icon" />, <SiMongodb className="mongodb-icon" />],
-      link: 'https://github.com/seu-usuario/e-commerce',
-      image: projectImage3,
+      title: 'Pedidos Hamburgueria',
+      description: 'Tela de pedido de Hamburgueria, com listagem de pedidos. Feito em React, Node e Express',
+      technologies: [
+        <FaReact className="react-icon" />,  // Ícone do React.js
+        <SiNodedotjs className="nodejs-icon" />,  // Ícone do Node.js
+        <SiExpress className="express-icon" />  // Ícone do Express
+      ],
+
+      link: 'https://hamburgueriadodinho.netlify.app/',
+      image: Screen,
     },
     {
-      title: 'Blog',
-      description: 'Blog pessoal criado com Gatsby e GraphQL.',
-      technologies: [<SiGraphql className="graphql-icon" />, <FaJs className="js-icon" />],
-      link: 'https://github.com/seu-usuario/blog',
-      image: projectImage4,
+      title: 'Conversor de Moedas',
+      description: 'Conversor de moedas criado em Javascript, com diversas opções de moedas.',
+      technologies: [<FaJs className="js-icon" />,
+        <SiHtml5 className="html-icon" />,
+        <SiCss3 className="css-icon" />],
+      link: 'https://conversor-lac-two.vercel.app/',
+      image: Converter,
     },
   ];
 

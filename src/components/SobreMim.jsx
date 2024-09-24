@@ -1,7 +1,7 @@
-// About.jsx
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import minhaImagem from "../assets/cliente1.jpg";
+import minhaImagem2 from "../assets/minhaimagem2.png"
 import curriculoPDF from "../assets/curriculo1.pdf"; // Verifique o caminho do PDF
 import Footer from './Fotter';
 import TestimonialsSection from './TestimonialsSection';
@@ -76,12 +76,12 @@ const TextWrapper = styled.div`
 `;
 
 const Title = styled.h2`
-
-font-size: 2rem;
+  font-size: 2rem;
   text-align: center;
   margin-bottom: 50px;
   color: #61dafb;
   position: relative;
+  scroll-margin-top: 80px;
 
   &::after {
     content: '';
@@ -101,8 +101,6 @@ const Description = styled.p`
   font-size: 1.1rem;
   line-height: 1.6;
   color: #ccc;
-
-
 `;
 
 const NameTitle = styled.h3`
@@ -110,16 +108,28 @@ const NameTitle = styled.h3`
   margin-top: 20px;
 `;
 
+// Contêiner fixo para evitar movimento no layout
+const TypingContainer = styled.div`
+  position: relative;
+  width: 250px; /* Largura suficiente para o texto completo */
+  height: 1.5rem; /* Altura suficiente para o texto */
+  margin-top: 5px;
+  display: flex;
+  justify-content: center; /* Centralizar o texto */
+`;
+
 const TypingText = styled.p`
   font-size: 1.2rem;
-  color: #fff; /* Muda a cor do texto para branco */
-  margin-top: 5px;
-  overflow: hidden; /* Oculta o texto que ultrapassa a largura do elemento */
-  white-space: nowrap; /* Impede que o texto quebre em várias linhas */
-  border-right: 3px solid rgba(255, 255, 255, 0.75); /* Cria o cursor */
-  width: 0;
-  animation: ${typing} 4s steps(30, end) infinite, ${blink} 0.5s step-end infinite alternate; /* Animação infinita */
+  color: #fff;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid rgba(255, 255, 255, 0.75);
+  position: absolute; /* Mantém o texto no mesmo lugar */
+  animation: ${typing} 4s steps(30, end) infinite, ${blink} 0.5s step-end infinite alternate;
+  width: 250px; /* Mantém a largura fixa */
 `;
+
 const DownloadButton = styled.a`
   display: inline-block;
   margin-top: 20px;
@@ -145,54 +155,59 @@ const About = () => {
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [index, setIndex] = useState(0);
+  const typingSpeed = 100; // Velocidade de digitação
+  const deletingSpeed = 50; // Velocidade ao apagar
   const fullText = "Programador Fullstack";
 
   useEffect(() => {
     const handleTyping = () => {
-      if (isDeleting) {
-        setText(fullText.substring(0, text.length - 1));
-        if (text === "") {
-          setIsDeleting(false);
-          setIndex(0);
-        }
+      if (!isDeleting && text === fullText) {
+        setTimeout(() => setIsDeleting(true), 1000); // Pausa antes de começar a apagar
+      } else if (isDeleting && text === '') {
+        setIsDeleting(false); // Volta a digitar
+        setIndex(0);
       } else {
-        setText(fullText.substring(0, text.length + 1));
-        if (text === fullText) {
-          setTimeout(() => setIsDeleting(true), 1000); // Pausa antes de deletar
-        }
+        setText(
+          isDeleting
+            ? fullText.substring(0, text.length - 1)
+            : fullText.substring(0, text.length + 1)
+        );
       }
     };
 
-    const timer = setInterval(handleTyping, 150);
+    const speed = isDeleting ? deletingSpeed : typingSpeed;
+    const timer = setTimeout(handleTyping, speed);
 
-    return () => clearInterval(timer);
+    return () => clearTimeout(timer);
   }, [text, isDeleting]);
 
   return (
     <>
-      <AboutContainer >
-        <Header/>
+      <Header />
+      <AboutContainer>
         <ImageWrapper>
-          <Image src={minhaImagem} alt="Pedro Henrique Ribeiro"  />
+          <Image src={minhaImagem2} alt="Pedro Henrique Ribeiro" />
           <NameTitle>Pedro Henrique Ribeiro</NameTitle>
-          <TypingText>{text}</TypingText>
+          <TypingContainer>
+            <TypingText>{text}</TypingText>
+          </TypingContainer>
           <DownloadButton href={curriculoPDF} download="curriculo-pedro-ribeiro.pdf">
             Download Currículo
           </DownloadButton>
         </ImageWrapper>
-        <TextWrapper >
-          <Title id="sobre" >SobreMim</Title>
+        <TextWrapper>
+          <Title id="sobre">SobreMim</Title>
           <Description>
-            Olá, meu nome é Pedro Henrique Ribeiro. Sou um desenvolvedor web apaixonado por criar experiências digitais modernas e envolventes. Tenho experiência com React, Node.js, JavaScript, Next.js, Tailwind CSS e Styled Components. Meu objetivo é desenvolver soluções que não apenas funcionem bem, mas que também ofereçam uma experiência de usuário incrível. Estou sempre buscando aprender novas tecnologias e melhorar minhas habilidades como <span>programador fullstack</span>.
-          </Description  >
+            Olá, meu nome é Pedro Henrique Ribeiro. Sou um desenvolvedor web apaixonado por criar experiências digitais modernas e envolventes. Meu objetivo é desenvolver soluções que não apenas funcionem bem, mas que também ofereçam uma experiência de usuário incrível. Estou sempre buscando aprender novas tecnologias e melhorar minhas habilidades como <span>programador fullstack</span>.
+          </Description>
         </TextWrapper>
       </AboutContainer>
       <Skills />
       <TestimonialsSection />
       <Projects />
-      <Contato/>
+      <Contato />
       <Footer />
-      <WhatsAppIcon/>
+      <WhatsAppIcon />
     </>
   );
 };

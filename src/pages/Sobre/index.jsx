@@ -1,4 +1,5 @@
 import React from 'react';
+import { useInView } from 'react-intersection-observer'; // Biblioteca para animação ao rolar
 import styled from 'styled-components';
 import ContactForm from '../../components/ContactForm';
 
@@ -9,6 +10,9 @@ const AboutContainer = styled.div`
   text-align: center;
   font-family: 'Arial, sans-serif';
   color: #333;
+  opacity: ${(props) => (props.isVisible ? 1 : 0)};
+  transform: ${(props) => (props.isVisible ? 'translateY(0)' : 'translateY(50px)')};
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 
   @media (max-width: 600px) {
     padding: 10px;
@@ -75,34 +79,32 @@ const ContactSection = styled.section`
 `;
 
 const About = () => {
+  // useInView hook para detectar quando a seção está visível
+  const { ref: aboutRef, inView: aboutVisible } = useInView({
+    triggerOnce: true,
+    threshold: 0.1, // Quando 10% da seção estiver visível
+  });
+
   return (
     <>
-    <AboutContainer>
-      <ProfileImage src="path-to-profile-image.jpg" alt="Rafaela Orige" />
-      <Heading>Rafaela Orige</Heading>
-      <SubHeading>Personal Trainer</SubHeading>
-      <BioSection>
-        <p>Oi, sou Rafaela Orige, tenho 23 anos e sou personal trainer com 2 anos de experiência...</p>
-        <p>Minha jornada no mundo do fitness começou...</p>
-        <p>Acredito que...</p>
-      </BioSection>
-      <ContactSection>
-        <p>Entre em contato comigo através do formulário abaixo ou me siga nas redes sociais!</p>
-       
-        {/* Formulário de Contato e Links de Redes Sociais */}
-      </ContactSection>
-      <ContactForm/>
-    </AboutContainer>
-
-  
+      <AboutContainer ref={aboutRef} isVisible={aboutVisible}>
+        <ProfileImage src="path-to-profile-image.jpg" alt="Rafaela Orige" />
+        <Heading>Rafaela Orige</Heading>
+        <SubHeading>Personal Trainer</SubHeading>
+        <BioSection>
+          <p>Oi, sou Rafaela Orige, tenho 23 anos e sou personal trainer com 2 anos de experiência...</p>
+          <p>Minha jornada no mundo do fitness começou...</p>
+          <p>Acredito que...</p>
+        </BioSection>
+        <ContactSection>
+          <p>Entre em contato comigo através do formulário abaixo ou me siga nas redes sociais!</p>
+          
+          {/* Formulário de Contato e Links de Redes Sociais */}
+        </ContactSection>
+        <ContactForm />
+      </AboutContainer>
     </>
-
-
-
-
-
   );
-
 }
 
 export default About;

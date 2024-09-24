@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { FaStar } from 'react-icons/fa';
 const Card = styled.div`
   display: flex;
   flex-direction: column;
@@ -11,8 +11,8 @@ const Card = styled.div`
   border-radius: 10px;
   color: white;
   text-align: center;
-  max-width: 300px; /* Ajuste conforme necessário */
-  margin: 0 auto; /* Centraliza o card */
+  max-width: 300px;
+  margin: 0 auto;
 `;
 
 const Photo = styled.img`
@@ -33,12 +33,33 @@ const Text = styled.p`
   color: #a9a9a9;
 `;
 
-const TestimonialCard = ({ photo, name, text }) => (
-  <Card>
-    <Photo src={photo} alt={name} />
-    <Name>{name}</Name>
-    <Text>{text}</Text>
-  </Card>
-);
+const Star = styled(FaStar)`
+  color: #ffd700;
+  font-size: 1.5rem;
+  margin-right: 5px;
+`;
+
+const RatingContainer = styled.div`
+  margin-top: 10px;
+`;
+
+const TestimonialCard = ({ photo, name, text, rating }) => {
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      stars.push(<Star key={i}>{i < rating ? '★' : '☆'}</Star>);
+    }
+    return stars;
+  };
+
+  return (
+    <Card>
+      <Photo src={photo} alt={name} />
+      <Name>{name}</Name>
+      <Text>{text}</Text>
+      <RatingContainer>{renderStars(rating)}</RatingContainer>
+    </Card>
+  );
+};
 
 export default TestimonialCard;

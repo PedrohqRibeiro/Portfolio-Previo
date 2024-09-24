@@ -7,34 +7,42 @@ import TestimonialCard from './TestimonialCard';
 import cliente1 from "../assets/cliente1.jpg";
 import Logo1 from "../assets/logo1.png";
 import Logo2 from "../assets/logo2.png";
+import Logo3 from "../assets/logo4.png"
 
 const testimonials = [
   {
-    photo: cliente1,
-    name: 'Pedro Henrique Ribeiro',
-    text: 'Pedro é um amigo apaixonado por tecnologia!',
+    photo: Logo3,
+    name: 'Rafaela Orige Personal',
+    text: 'Já fiz alguns trabalhos com o Pedro, me ajudou desde as escolhas de estilos, até a criação de minha logo.',
+    rating: 5,
   },
   {
     photo: Logo2,
     name: 'Gabriel Barber',
     text: 'Pedro é um cliente meu que acabou virando um grande amigo, sempre atencioso e criativo em suas criações',
+    rating: 5,
   },
   {
     photo: Logo1,
     name: 'Personalize Comunicação',
-    text: 'Conheci o Pedro por um cliente dele e achei ele muito atencioso e rapido para criação de um linktree para minha empresa.',
+    text: 'Conheci o Pedro por um cliente dele, achei ele muito atencioso e rápido para criação de um linktree para minha empresa.',
+    rating: 5,
   },
   {
     photo: 'https://via.placeholder.com/80',
-    name: 'Cliente 4',
-    text: 'Os treinos são desafiadores, mas os resultados valem a pena!',
+    name: 'Lucas Zanelato',
+    text: 'Pedro é um colega de estudo, que não medi esforços para ajudar os colegas que estão com dificuldades.',
+    rating: 5,
   },
 ];
+
 
 const Section = styled.section`
   padding: 40px 0;
   background-color: #1e1e1e;
   text-align: center;
+  min-height: 60vh; 
+  scroll-margin-top: 80px;
 
   @media (max-width: 768px) {
     padding: 20px 0;
@@ -66,6 +74,7 @@ const Grid = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  padding-top: 50px;
 
   @media (max-width: 768px) {
     display: none; /* Esconde a grade em telas móveis */

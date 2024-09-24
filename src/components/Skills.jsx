@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components'; 
 import { FaReact, FaNodeJs, FaJs } from 'react-icons/fa';
-import { SiTailwindcss, SiNextdotjs, SiStyledcomponents } from 'react-icons/si';
+import { SiTailwindcss, SiNextdotjs, SiStyledcomponents, SiExpress } from 'react-icons/si'; // Adiciona o SiExpress
 
 
 const SkillsContainer = styled.div`
   padding: 40px;
   background-color: #1e1e1e;
+  min-height: 50vh; 
+  scroll-margin-top: 80px; /* Ajuste baseado na altura do header fixo */
 `;
 
 const Title = styled.h2`
@@ -33,6 +35,7 @@ const SkillsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 20px;
+  padding-top: 50px;
 `;
 
 const SkillCard = styled.div`
@@ -66,7 +69,8 @@ const Skills = () => {
     { name: 'JavaScript', icon: <FaJs />, color: '#f7df1e' },
     { name: 'Tailwind CSS', icon: <SiTailwindcss />, color: '#38b2ac' },
     { name: 'Next.js', icon: <SiNextdotjs />, color: '#000' },
-    { name: 'styled-components', icon: <SiStyledcomponents />, color: '#db7093' }
+    { name: 'styled-components', icon: <SiStyledcomponents />, color: '#db7093' },
+    { name: 'Express.js', icon: <SiExpress />, color: '#000' } 
   ];
 
   return (
