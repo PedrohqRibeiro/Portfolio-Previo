@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.header`
-   background-color: #1e1e1e;
+  background-color: #1e1e1e;
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -84,6 +84,22 @@ const MobileNavItem = styled.li`
   }
 `;
 
+const DelayedLink = ({ href, children, onLinkClick }) => {
+  const handleClick = (e) => {
+    e.preventDefault(); // Evita a navegação imediata
+    setTimeout(() => {
+      document.querySelector(href).scrollIntoView({ behavior: 'smooth' }); // Rolagem suave para a âncora
+      if (onLinkClick) onLinkClick();
+    }, 450); // Delay de 500ms
+  };
+
+  return (
+    <a href={href} onClick={handleClick}>
+      {children}
+    </a>
+  );
+};
+
 const Header = ({ onLinkClick }) => {
   const [menuOpen, setMenuOpen] = React.useState(false);
 
@@ -98,15 +114,24 @@ const Header = ({ onLinkClick }) => {
 
   return (
     <HeaderContainer>
-      <Logo>Portfólio Web </Logo>
+      <Logo>Portfólio Web</Logo>
       <Nav>
         <NavList>
-          <NavItem><a href="#sobre" onClick={handleLinkClick}>Sobre</a></NavItem>
-          <NavItem><a href="#skills" onClick={handleLinkClick}>Skills</a></NavItem>
-          <NavItem><a href="#projetos" onClick={handleLinkClick}>Projetos</a></NavItem>
-          <NavItem><a href="#feedbacks" onClick={handleLinkClick}>Feedbacks</a></NavItem>
-          <NavItem><a href="#contato" onClick={handleLinkClick}>Contato</a></NavItem>
-         
+          <NavItem>
+            <DelayedLink href="#sobre" onLinkClick={handleLinkClick}>Sobre</DelayedLink>
+          </NavItem>
+          <NavItem>
+            <DelayedLink href="#skills" onLinkClick={handleLinkClick}>Skills</DelayedLink>
+          </NavItem>
+          <NavItem>
+            <DelayedLink href="#projetos" onLinkClick={handleLinkClick}>Projetos</DelayedLink>
+          </NavItem>
+          <NavItem>
+            <DelayedLink href="#feedbacks" onLinkClick={handleLinkClick}>Feedbacks</DelayedLink>
+          </NavItem>
+          <NavItem>
+            <DelayedLink href="#contato" onLinkClick={handleLinkClick}>Contato</DelayedLink>
+          </NavItem>
         </NavList>
       </Nav>
       <MobileMenuButton onClick={handleMenuClick}>
@@ -114,11 +139,21 @@ const Header = ({ onLinkClick }) => {
       </MobileMenuButton>
       <MobileNav isOpen={menuOpen}>
         <MobileNavList>
-          <MobileNavItem><a href="#sobre" onClick={handleLinkClick}>Sobre</a></MobileNavItem>
-          <MobileNavItem><a href="#skills" onClick={handleLinkClick}>Skills</a></MobileNavItem>
-          <MobileNavItem><a href="#projetos" onClick={handleLinkClick}>Projetos</a></MobileNavItem>
-          <MobileNavItem><a href="#feedbacks" onClick={handleLinkClick}>Feedbacks</a></MobileNavItem>
-          <MobileNavItem><a href="#contato" onClick={handleLinkClick}>Contato</a></MobileNavItem>
+          <MobileNavItem>
+            <DelayedLink href="#sobre" onLinkClick={handleLinkClick}>Sobre</DelayedLink>
+          </MobileNavItem>
+          <MobileNavItem>
+            <DelayedLink href="#skills" onLinkClick={handleLinkClick}>Skills</DelayedLink>
+          </MobileNavItem>
+          <MobileNavItem>
+            <DelayedLink href="#projetos" onLinkClick={handleLinkClick}>Projetos</DelayedLink>
+          </MobileNavItem>
+          <MobileNavItem>
+            <DelayedLink href="#feedbacks" onLinkClick={handleLinkClick}>Feedbacks</DelayedLink>
+          </MobileNavItem>
+          <MobileNavItem>
+            <DelayedLink href="#contato" onLinkClick={handleLinkClick}>Contato</DelayedLink>
+          </MobileNavItem>
         </MobileNavList>
       </MobileNav>
     </HeaderContainer>

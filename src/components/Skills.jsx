@@ -68,7 +68,7 @@ const Skills = () => {
     { name: 'Node.js', icon: <FaNodeJs />, color: '#3c873a' },
     { name: 'JavaScript', icon: <FaJs />, color: '#f7df1e' },
     { name: 'Tailwind CSS', icon: <SiTailwindcss />, color: '#38b2ac' },
-    { name: 'Next.js', icon: <SiNextdotjs />, color: '#000' },
+  
     { name: 'styled-components', icon: <SiStyledcomponents />, color: '#db7093' },
     { name: 'Express.js', icon: <SiExpress />, color: '#000' } 
   ];
